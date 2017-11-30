@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Kendo UI DropDownList Demo</title>
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css"/>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css"/>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+</head>
+<body>
+  
+<input id="dropdownlist" />
+<script>
+
+var dataJson={ "data": [{"ServiceCode":"ADD","ServiceText":"Additional Services"},{"ServiceCode":"ALL","ServiceText":"All Services"},{"ServiceCode":"BAR","ServiceText":"Play Services"},{"ServiceCode":"CAR","ServiceText":"Gym Services"},{"ServiceCode":"CNC","ServiceText":"Food Services"},{"ServiceCode":"COME","ServiceText":"Fast Services"},{"ServiceCode":"DIAB","ServiceText":"Less Services"},{"ServiceCode":"DIGS","ServiceText":"Digestive Services"},{"ServiceCode":"DWAD","ServiceText":"Dinner Services"},{"ServiceCode":"GAST","ServiceText":"Few Services"}]};
+  
+var keywordDataSource = new kendo.data.DataSource({
+  data:dataJson.data
+});
+  
+keywordDataSource.read();
+  
+$("#dropdownlist").kendoDropDownList({
+  dataTextField: "ServiceText",
+  dataValueField: "ServiceCode",
+  dataSource: keywordDataSource,
+  dataBound: function(e) {
+      // handle the event
+    	var dropdownlist = $("#dropdownlist").getKendoDropDownList();
+    	dropdownlist.value("DIGS");
+  }
+});
+</script>
+</body>
+</html>
